@@ -1,0 +1,21 @@
+body {
+    background-color: white;
+    max-width: 600px;
+    margin: auto;
+   
+}
+h1 a{
+    text-decoration: none;
+}
+nav {
+    display: flex;
+    padding: 1rem;
+    margin: 1rem;
+}
+nav li {
+    list-style-type: none;
+}
+nav li a{
+    text-decoration: none;
+    padding: 1.2rem;
+}
