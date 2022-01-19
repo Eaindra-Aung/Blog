@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
     //
     public function index() { 
-        return view('blogs',[
+        return view('blogs.index',[
             'blogs'=>Blog::latest()->filter(request(['search', 'category', 'username']))->simplePaginate(6) //paginate(6)
                          ->withQueryString(),//lazyloading eagerload
             // 'categories'=>Category::all()
@@ -17,7 +17,7 @@ class BlogController extends Controller
     }
         public function show(Blog $blog) {
             // $blog = Blog::find($slug);
-            return view('blog',[
+            return view('blogs.show',[
                 "blog" => $blog,
                 "ramdomBlogs" => Blog::inRandomOrder()->take(3)->get()
             ]); 

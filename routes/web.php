@@ -29,14 +29,11 @@ Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}',[BlogController::class,'show']);
 
 
-Route::get('/users/{user:username}', function (User $user) {
-    return view('blogs',[
-        "blogs" => $user->blogs,
-    ]); 
-});
-
-
-
-
+// Route::get('/users/{user:username}', function (User $user) {
+//     return view('blogs',[
+//         "blogs" => $user->blogs,
+//     ]); 
+// });
+Route::get('/register', [AuthController::class, 'create']);
 
 
