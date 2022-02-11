@@ -21,7 +21,9 @@
         </div>
       </div>
     </div>
-  
+    <!-- //comment section -->
+
+    <x-comments :comments= "$blog->comments"/>
     <!-- subscribe new blogs -->
     <x-subscribe />
     <x-blogs_you_may_like :ramdomBlogs="$ramdomBlogs" />

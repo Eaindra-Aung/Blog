@@ -11,8 +11,8 @@ class BlogController extends Controller
     public function index() { 
         return view('blogs.index',[
             'blogs'=>Blog::latest()->filter(request(['search', 'category', 'username']))
-                                   ->paginate(6) //simplePaginate(6)
-                                ->withQueryString(),//lazyloading eagerload
+                                   ->paginate(6)->withQueryString(),//simplePaginate(6)
+                                //lazyloading eagerload
             // 'categories'=>Category::all()
         ]);
     }

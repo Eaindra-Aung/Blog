@@ -20,22 +20,21 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-// Route::get('/contact', function () { //path 
-//     return view('contact'); //page=>page.index bladename
-// });
 
 
 
+//BlogController
 Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}',[BlogController::class,'show']);
 
 
-// Route::get('/users/{user:username}', function (User $user) {
-//     return view('blogs',[
-//         "blogs" => $user->blogs,
-//     ]); 
-// });
-Route::get('/register', [AuthController::class, 'create']);
-Route::post('/register', [AuthController::class, 'store']);
+// AuthController
+Route::get('/register', [AuthController::class, 'create'])->middleware('guest');
+Route::post('/register', [AuthController::class, 'store'])->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
+
+Route::get('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::post('/login', [AuthController::class, 'post_login'])->middleware('guest');
 
 

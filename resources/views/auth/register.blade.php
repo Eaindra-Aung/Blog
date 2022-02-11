@@ -3,11 +3,12 @@
     <div class="row">
         <div class="col-md-5 mx-auto">
             <div class="card p-4 my-3 shadow-sm">
+                <h1>Register Form</h1>
             <form method="POST" action="/register">
                 @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" 
+                <input required type="text" class="form-control" id="exampleInputEmail1" 
                 aria-describedby="emailHelp" 
                 name="name" value="{{old('name')}}">
                 @error('name')
