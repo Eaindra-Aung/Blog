@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;//Blog::factory()
-    protected $guarded=[];
-    // protected $fillable=['title','intro','body'];
     protected $with= ['category', 'author'];
 
 
@@ -36,6 +34,9 @@ class Blog extends Model
     }
     public function author(){//user_id
         return $this->belongsTo(User::class,'user_id');
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }
 
