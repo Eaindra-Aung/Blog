@@ -52,7 +52,7 @@ class AuthController extends Controller
         'password.min'=> 'Password should be at least 8 characters'
          ] );
          // auth attempt
-         dd($formData);
+        //  dd($formData);
          if(auth()->attempt($formData)){
              return redirect('/')->with('success', 'Welcome back '.$user->name);
          }else{

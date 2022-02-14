@@ -28,6 +28,8 @@ Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}',[BlogController::class,'show']);
 
 
+Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
+
 // AuthController
 Route::get('/register', [AuthController::class, 'create'])->middleware('guest');
 Route::post('/register', [AuthController::class, 'store'])->middleware('guest');
