@@ -48,15 +48,15 @@ class AuthController extends Controller
             'email' => ['required', 'email', 'max:255', 'min:3', Rule::exists('users', 'email')],
             'password' => ['required', 'max:255', 'min:8'],
         ],[
-        'email.required'=>'We need your email address',
-        'password.min'=> 'Password should be at least 8 characters'
+            'email.required'=>'We need your email address',
+            'password.min'=> 'Password should be at least 8 characters'
          ] );
          // auth attempt
         //  dd($formData);
          if(auth()->attempt($formData)){
-             return redirect('/')->with('success', 'Welcome back '.$user->name);
+             return redirect('/')->with('success', 'Welcome back ');
          }else{
-             return rediect('/')->back()->withError([
+             return redirect('/')->back()->withError([
                  'email'=> 'User Input Wrong!'
              ]);
          };

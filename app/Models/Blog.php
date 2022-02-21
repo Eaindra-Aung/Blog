@@ -12,15 +12,17 @@ class Blog extends Model
     protected $with= ['category', 'author'];
 
 
-    public function scopeFilter($query, $filter){  
+    public function scopeFilter($query,$filter){  
+        
         $query->when($filter['search']??false , function($query, $search){
                 $query->where(function ($query) use ($search){
                     $query->where('title', 'LIKE', '%'.$search.'%')
                     ->orWhere('body', 'LIKE', '%'.$search.'%');
                 });
             });
-        $query->when($filter['category']??false , function($query, $slug) {
-           $query->whereHas('category', function ($query) use ($slug){
+            // all|frontend|backend dropdown click
+        $query->when($filter['category']??false , function($query, $slug) {           
+                $query->whereHas('category', function ($query) use ($slug){
                  $query->where('slug', $slug);
            }) ;       
         });
@@ -39,6 +41,15 @@ class Blog extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+    public function subscribers(){
+        return $this->belongsToMany(User::class, 'blog_user');
+    }
+    public function unSubscribe(){
+         $this->subscribers()->detach(auth()->id());
+    }
+    public function subscribe(){
+        $this->subscribers()->attach(auth()->id());
+   }
 }
 
 //logical grouping

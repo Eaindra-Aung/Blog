@@ -27,7 +27,7 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}',[BlogController::class,'show']);
 
-
+// CommentController
 Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
 
 // AuthController
@@ -38,5 +38,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/login', [AuthController::class, 'post_login'])->middleware('guest');
+
+Route::post('/blogs/{blog:slug}/subscription', [BlogController::class, 'subscriptionHandler']);
 
 

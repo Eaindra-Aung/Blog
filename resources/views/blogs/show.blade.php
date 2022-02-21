@@ -12,8 +12,25 @@
           <div>
             <div>Author - <a href="/users/{{$blog->author->username}}">
               {{$blog->author->name}}</a></div>
-             <div><a href="/categories/{{$blog->category->slug}}"><span class="badge bg-primary">{{$blog->category->name}}</span></a></div>
+             <div><a href="/categories/{{$blog->category->slug}}"><span class="badge bg-primary">
+               {{$blog->category->name}}</span></a></div>
             <div class="text-secondary">{{$blog->created_at->diffForHumans()}}</div>
+            <div class="text-secondary">
+               <form action="/blogs/{{$blog->slug}}/subscription" method="POST">
+                 @csrf
+                 @auth()
+                 @if(auth()->user()->isSubscribed($blog))
+                 <button class="btn btn-warning">
+                   unsubscribe
+                 </button>
+                 else
+                 <button class="btn btn-danger">
+                   subscribe
+                 </button>
+                 @endif
+                 @endauth
+               </form>
+            </div>
           </div>
           <p class="lh-md mt-3">
              {{$blog->body}}
@@ -25,25 +42,17 @@
      <section class="container">
        <div class="col-md-8 mx-auto">
         @auth
-        <x-card-wrapper>
-          <form action ="/blogs/{{$blog->slug}}" method="POSt">
-            <div class="mb-3">
-            <textarea name="body" class="form-control border-0" cols="10" rows="5" placeholder="say something...."></textarea> 
-            @error('body')
-              <p class="text-danger">{{$message}}</p>
-            @enderror
-          
-          </div>
-            <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Submit</button></div>
-          </form>
-        </x-card-wrapper>
+          <x-comment-form :blog="$blog" />
         @else
         <p class="text-center">Please <a href="/login">Log In</a> </p>
         @endauth
        </div>
      </section>
     <!-- //comment section -->
-    <x-comments :comments="$blog->comments"/>
+    @if ($blog->comments->count())
+      <x-comments :comments="$blog->comments()->latest()->paginate(3)"/>
+    @endif
+
   
     <!-- subscribe new blogs -->
     <x-subscribe />

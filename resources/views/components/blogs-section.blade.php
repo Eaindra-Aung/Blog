@@ -8,9 +8,6 @@
       <h1 class="display-5 fw-bold mb-4">Blogs</h1>
       <div class="">
         <x-category-dropdown />
-        <!-- <select name="" id="" class="p-1 rounded-pill mx-3">
-          <option value="">Filter by Tag</option>
-        </select> -->
       </div>
       <form action="/" method="GET"  class="my-3">
         <div class="input-group mb-3">
@@ -18,7 +15,7 @@
           <input
           name="category"
             type="hidden"
-            value="{{request('search')}}"
+            value="{{request('category')}}"
           />
           @endif
           @if(request('username'))
@@ -29,9 +26,9 @@
           />
           @endif
           <input
-          name="username"
+          name="search"
             type="text"
-            value="{{request('username')}}"
+            value="{{request('search')}}"
             autocomplete="false"
             class="form-control"
             placeholder="Search Blogs..."
