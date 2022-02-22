@@ -19,7 +19,7 @@ class AuthController extends Controller
     
     //STORE
     public function store(){
-        
+        // dd(request()->all());
         //validation
         $formData=request()->validate([
             'name'=> ['required', 'max:255', 'min:3'], //'required|max:255|min:3',
@@ -27,6 +27,7 @@ class AuthController extends Controller
             'username'=> ['required', 'max:255', 'min:3', Rule::unique('users', 'username')],
             'password'=> ['required', 'min:8'],
         ]);
+       
          //login
         $user=User::create($formData);
         auth()->login($user);
@@ -36,7 +37,6 @@ class AuthController extends Controller
     }
     //LOGIN
     public function login(){
-        // dd('hit');
         return view('auth.login');
     }
 
@@ -45,7 +45,8 @@ class AuthController extends Controller
         
         // validation
         $formData=request()->validate([
-            'email' => ['required', 'email', 'max:255', 'min:3', Rule::exists('users', 'email')],
+            'email' => ['required', 'email', 'max:255',  
+                         Rule::exists('users', 'email')],
             'password' => ['required', 'max:255', 'min:8'],
         ],[
             'email.required'=>'We need your email address',
@@ -56,7 +57,7 @@ class AuthController extends Controller
          if(auth()->attempt($formData)){
              return redirect('/')->with('success', 'Welcome back ');
          }else{
-             return redirect('/')->back()->withError([
+             return redirect()->back()->withErrors([
                  'email'=> 'User Input Wrong!'
              ]);
          };

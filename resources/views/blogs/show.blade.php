@@ -1,3 +1,5 @@
+
+
 <x-layout>
     <!-- single blog section -->
     <div class="container">

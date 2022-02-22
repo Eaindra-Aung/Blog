@@ -6,6 +6,7 @@
                 <h1>Register Form</h1>
             <form method="POST" action="/register">
                 @csrf
+                <!-- name -->
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <input required type="text" class="form-control" id="exampleInputEmail1" 
@@ -14,6 +15,7 @@
                 <x-error name="name" />
                 
             </div>
+            <!-- username -->
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
                 <input required type="text" class="form-control" id="exampleInputEmail1" 
@@ -22,6 +24,7 @@
                 <x-error name="username" />
                 
             </div>
+            <!-- email -->
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input   type="email" class="form-control" id="exampleInputEmail1" 
@@ -29,16 +32,18 @@
                 name="email" value="{{old('email')}}">
                   <x-error name="email"/>
             </div>
+            <!-- password  -->
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input  required type="password" class="form-control" id="exampleInputPassword1" 
                 name="password">
                 <x-error name="password"/>
             </div>
-            <button  type="submit" class="btn btn-primary">Submit</button>
-            <ul>
-            <x-error name="submit"/>
-            </ul>
+            <!-- submit  -->
+                <button  type="submit" class="btn btn-primary">Submit</button>
+                <ul>
+                <x-error name="submit"/>
+                </ul>
             <!-- <ul>
              @foreach ($errors->all() as $error)
                     <li>{{$error}}</li>

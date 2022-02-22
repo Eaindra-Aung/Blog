@@ -18,7 +18,7 @@ class CreateBlogsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique(); //backend validation
             $table->text('intro');
             $table->text('body');
             $table->timestamps();
