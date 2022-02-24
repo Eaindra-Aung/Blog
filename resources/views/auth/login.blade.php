@@ -6,7 +6,6 @@
                 <h1>Log In</h1>
             <form method="POST" >
                 @csrf
-            
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input required type="email" class="form-control" id="exampleInputEmail1" 

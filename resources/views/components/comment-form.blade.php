@@ -1,7 +1,9 @@
 
 @props(['blog'])
 <x-card-wrapper>
+
           <form action ="/blogs/{{$blog->slug}}/comments" method="POST">
+            @csrf
             <div class="mb-3">
             <textarea name="body" class="form-control border-0" cols="10" 
             rows="5" placeholder="say something...."> 

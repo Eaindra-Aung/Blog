@@ -6,8 +6,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AuthController;
-// use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------

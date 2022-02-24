@@ -42,7 +42,6 @@ class AuthController extends Controller
 
     //POST METHOD LOG IN
     public function post_login(){
-        
         // validation
         $formData=request()->validate([
             'email' => ['required', 'email', 'max:255',  
