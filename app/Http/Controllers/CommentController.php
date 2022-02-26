@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SubscriberMail;
+
 
 class CommentController extends Controller
 {
@@ -17,8 +20,16 @@ class CommentController extends Controller
          'body'=> request('body'),
          'user_id' => auth()->user()->id
     ]);
-    //    dd($blog);
-     return redirect('/');
-    //  '/blogs'.$blog->slug
+
+    $subscribers=$blog->subscribers->filter(fn ($subscriber)=> 
+    $subscriber->id != auth()->id());
+    // foreach ($subscribers as $subscriber)
+    // {
+
+    // }
+    $subscribers->each(function ($subscriber) use ($blog){
+         Mail::to($subscriber->email)->queue(new SubscriberMail($blog));
+    });
+     return redirect('/blogs/'.$blog->slug);
 }
 }

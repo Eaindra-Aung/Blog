@@ -13,7 +13,7 @@
                 <div class="ms-3">
                     <h6>{{$comment->author->name}}</h6>
                     <p class="text-secondary">{{$comment ? $comment->diffForHumans: '-'}}</p>
-                    <!-- format("F j,Y, g:i a")/created_at->diffForHumans() -->
+                    <!-- created_at->format("F j,Y, g:i a")/created_at->diffForHumans() -->
                 </div>
              </div>
            <p class="mt-3">

@@ -24,6 +24,7 @@
 
 
                <!-- login  -->
+               <!-- <a href="/login" class="nav-link">Log In</a> -->
                 <a href="#subscribe" class="nav-link">Subscribe</a>
         </div>
       </div>

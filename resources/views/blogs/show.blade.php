@@ -17,16 +17,19 @@
              <div><a href="/categories/{{$blog->category->slug}}"><span class="badge bg-primary">
                {{$blog->category->name}}</span></a></div>
             <div class="text-secondary">{{$blog->created_at->diffForHumans()}}</div>
+
+              <!-- subscribe  -->
             <div class="text-secondary">
                <form action="/blogs/{{$blog->slug}}/subscription" method="POST">
                  @csrf
-                 @auth()
+
+                 @auth
                  @if(auth()->user()->isSubscribed($blog))
-                 <button class="btn btn-warning">
+                 <button class="btn btn-danger">
                    unsubscribe
                  </button>
                  else
-                 <button class="btn btn-danger">
+                 <button class="btn btn-warning">
                    subscribe
                  </button>
                  @endif
@@ -57,7 +60,6 @@
 
   
     <!-- subscribe new blogs -->
-    <x-subscribe />
     <x-blogs_you_may_like :ramdomBlogs="$ramdomBlogs" />
     <!-- footer -->
 </x-layout>

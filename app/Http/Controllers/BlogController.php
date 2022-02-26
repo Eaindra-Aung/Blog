@@ -25,11 +25,13 @@ class BlogController extends Controller
         }
         public function subscriptionHandler(Blog $blog){
             //if Blog subscribe
-            if(User::find(auth()->user())->isSubscribed($blog)){
+           
+            if(User::find(auth()->id())->isSubscribed($blog)){
                 $blog->unSubscribe();
             }else {
                 $blog->subscribe();
             }
+            return back();
 
         }
     }
